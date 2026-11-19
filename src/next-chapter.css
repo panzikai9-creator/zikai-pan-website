@@ -1,0 +1,38 @@
+/* Closing "Next chapter · Hong Kong" section, built on ScrollExpand. */
+.next-chapter { --nc-ink: #fff9eb; background: #171816; color: var(--nc-ink); }
+.next-chapter .scroll-expand__stage { background: #171816; }
+/* Starts black-and-white like the cover and blooms into colour as the frame opens. */
+.next-chapter .scroll-expand__media {
+  object-position: 50% 55%;
+  filter: grayscale(calc(1 - var(--se-progress, 0))) brightness(calc(.62 + .3 * var(--se-progress, 0)));
+}
+/* Stronger, taller scrim than the default so the caption stays legible over the bright campus. */
+.next-chapter .scroll-expand__scrim {
+  background: linear-gradient(to top, rgba(10, 11, 10, .9) 0%, rgba(10, 11, 10, .66) 34%, rgba(10, 11, 10, .2) 60%, rgba(10, 11, 10, 0) 72%, rgba(10, 11, 10, .18));
+}
+.next-chapter .scroll-expand__title {
+  font-family: "Arial Black", "Helvetica Neue", Helvetica, Arial, "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-weight: 900; letter-spacing: -.045em; color: var(--nc-ink);
+  text-shadow: 0 2px 30px rgba(0, 0, 0, .55);
+}
+.next-chapter .scroll-expand__hint { color: #fff9eb99; font-size: .75rem; letter-spacing: .14em; text-transform: uppercase; }
+.next-chapter .scroll-expand__overlay {
+  align-items: flex-start; justify-content: flex-end; text-align: left;
+  padding: 0 4.5% clamp(40px, 8vh, 88px);
+}
+.next-chapter-copy { max-width: 760px; text-shadow: 0 1px 18px rgba(0, 0, 0, .35); }
+.next-chapter-copy .cv-primary { text-shadow: none; }
+.next-chapter-eyebrow { font-size: .875rem; text-transform: uppercase; letter-spacing: .13em; margin: 0 0 16px; color: #e4dfd6; }
+.next-chapter-copy h2 { font-size: clamp(1.9rem, 4.2vw, 3.8rem); line-height: 1.04; letter-spacing: -.045em; font-weight: 650; margin: 0 0 16px; word-break: keep-all; overflow-wrap: anywhere; }
+.next-chapter-body { font-size: clamp(1rem, 1.35vw, 1.18rem); line-height: 1.6; max-width: 46ch; margin: 0 0 28px; color: #eee9df; }
+.next-chapter-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 28px; font-size: .94rem; }
+.next-chapter-actions a { color: var(--nc-ink); text-decoration: none; }
+.next-chapter-actions a:not(.cv-primary):hover { text-decoration: underline; text-underline-offset: 5px; }
+.next-chapter :focus-visible { outline: 2px solid currentColor; outline-offset: 5px; }
+@media (max-width: 599px) {
+  .next-chapter .scroll-expand__overlay { padding: 0 6% 36px; }
+  .next-chapter-eyebrow { font-size: .78rem; margin-bottom: 12px; }
+  .next-chapter-body { font-size: .94rem; margin-bottom: 22px; }
+  .next-chapter-actions { gap: 10px 22px; font-size: .875rem; }
+}
+@media print { .next-chapter { display: none !important; } }

@@ -4,6 +4,7 @@ import { copy } from './copy.js';
 import { experiences, studies } from './experience.js';
 import { englishEntries } from './experience.en.js';
 import Gallery from './Gallery.jsx';
+import { emails, phone, linkedin } from './contact';
 import './resume-body.css';
 
 type Language = 'zh' | 'en';
@@ -54,9 +55,6 @@ const labels = {
     contact: 'Get in touch about marketing, brand strategy or consumer research.', email: 'Email', phone: 'Phone',
   },
 };
-const emails = ['panzikai9@gmail.com', 'panzikai7@163.com'];
-const phone = { display: '+86 187 9223 4747', href: 'tel:+8618792234747' };
-const linkedin = 'https://www.linkedin.com/in/zikai-pan-376a5329b/';
 const pdf = './downloads/zikai-pan-resume.pdf';
 
 function Disclosure({ title, children, className = '' }: { title: string; children: ReactNode; className?: string }) {

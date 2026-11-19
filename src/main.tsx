@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import { createRoot } from 'react-dom/client'
 import { X, Menu } from 'lucide-react'
 import ResumeBody from './ResumeBody'
+import NextChapter from './NextChapter'
 import './cover.css'
 
 type Language = 'zh' | 'en'
@@ -79,6 +80,6 @@ function App(){
     try{localStorage.setItem('portfolio-language',lang)}catch{}
     const url=new URL(location.href);url.searchParams.set('lang',lang);history.replaceState(null,'',url)
   },[lang])
-  return <><Cover lang={lang} onLang={setLang}/><main><ResumeBody language={lang}/></main></>
+  return <><Cover lang={lang} onLang={setLang}/><main><ResumeBody language={lang}/><NextChapter language={lang}/></main></>
 }
 createRoot(document.getElementById('root')!).render(<App/>);
