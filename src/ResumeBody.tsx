@@ -35,7 +35,7 @@ const labels = {
       ['考试成绩', '托福 iBT 101（阅读 27、听力 25、口语 23、写作 26）；AP 微观经济学 5 分、AP 宏观经济学 5 分'],
       ['资质', '国家二级羽毛球裁判员（国家体育总局）'],
     ],
-    contact: '欢迎交流市场营销、品牌策略与消费者研究。', email: '邮箱',
+    contact: '欢迎交流市场营销、品牌策略与消费者研究。', email: '邮箱', phone: '电话',
   },
   en: {
     title: 'Curriculum vitae', index: 'Contents', links: ['Education', 'Experience', 'Research projects', 'Skills & practice', 'Contact'],
@@ -51,10 +51,11 @@ const labels = {
       ['Test scores', 'TOEFL iBT 101 (Reading 27, Listening 25, Speaking 23, Writing 26); AP Microeconomics 5, AP Macroeconomics 5'],
       ['Certification', 'National Level II Badminton Referee, General Administration of Sport of China'],
     ],
-    contact: 'Get in touch about marketing, brand strategy or consumer research.', email: 'Email',
+    contact: 'Get in touch about marketing, brand strategy or consumer research.', email: 'Email', phone: 'Phone',
   },
 };
-const email = 'panzikai7@163.com';
+const emails = ['panzikai9@gmail.com', 'panzikai7@163.com'];
+const phone = { display: '+86 187 9223 4747', href: 'tel:+8618792234747' };
 const linkedin = 'https://www.linkedin.com/in/zikai-pan-376a5329b/';
 const pdf = './downloads/zikai-pan-resume.pdf';
 
@@ -193,7 +194,7 @@ export default function ResumeBody({ language }: { language: Language }) {
       </aside>
       <div className="cv-text">
         <header className="cv-intro"><h2>{t.title}</h2><p>{c.bio}</p>
-          <div className="cv-print-contact">{c.name} · {email} · linkedin.com/in/zikai-pan-376a5329b</div>
+          <div className="cv-print-contact">{c.name} · {emails[0]} · {phone.display} · linkedin.com/in/zikai-pan-376a5329b</div>
         </header>
         <section id="education" data-cv-section="">
           {header('education')}
@@ -265,7 +266,8 @@ export default function ResumeBody({ language }: { language: Language }) {
           {header('contact')}
           <p className="cv-contact-note">{t.contact}</p>
           <dl className="cv-contact-rows">
-            <div><dt>{t.email}</dt><dd><a href={`mailto:${email}`}>{email}</a></dd></div>
+            <div><dt>{t.email}</dt><dd>{emails.map((e, i) => <React.Fragment key={e}>{i > 0 && <br />}<a href={`mailto:${e}`}>{e}</a></React.Fragment>)}</dd></div>
+            <div><dt>{t.phone}</dt><dd><a href={phone.href}>{phone.display}</a></dd></div>
             <div><dt>LinkedIn</dt><dd><a href={linkedin} target="_blank" rel="noopener noreferrer">Zikai Pan</a></dd></div>
           </dl>
         </section>
