@@ -4,12 +4,11 @@ const studyDetails = {
   airwalk: {
     title: 'Airwalk 品牌重塑', org: '美国东北大学 · 消费者行为咨询项目',
     metric: '3 个竞品', metricNote: 'Vans / Adidas / Converse', tags: ['品牌策略', '消费者洞察'],
-    image: 'media/skate.jpg', imageAlt: '黑白滑板场概念配图', imageLabel: '概念配图',
   },
   netflix: {
     title: 'Netflix 促销效果研究', org: '美国东北大学 · MKTG 2602 期末项目',
     metric: '2 种估计方法', metricNote: 'OLS / IPW', tags: ['定量营销', '因果推断'],
-    image: 'media/film.jpg', imageAlt: '红色胶片概念配图', imageLabel: '概念配图', logo: 'netflix-wordmark.webp',
+    logo: 'netflix-wordmark.webp',
   }
 };
 export const studies = projects.map(p => ({
@@ -36,7 +35,7 @@ export const experiences = [
     details:[['教学内容','承担雅思阅读以及大学英语四、六级教学。'],['备考指导','围绕学员的阅读难点与考试目标，开展有针对性的练习和备考指导。']]
   },
   {
-    id:'orient', category:'职业经历', title:'市场营销实习生', org:'东方证券 · 南京证券营业部',logo:'orient-securities.png',
+    id:'orient', category:'职业经历', title:'市场营销实习生', org:'东方证券 · 南京证券营业部',
     date:'2024.06 — 2024.08',location:'南京', tags:['客户研究','金融传播'],
     metric:'30+ 家',metricNote:'调研覆盖的机构客户',
     summary:'通过问卷与访谈了解机构客户需求，用市场简报和投教内容支持客户沟通。',

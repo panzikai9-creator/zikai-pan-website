@@ -42,12 +42,12 @@
 @media(min-width:600px) and (max-width:900px){.cv-rooftop-hero{height:820px}.cv-person img{left:73%}.cv-rooftop-scene img{left:calc(73% + 55px)}.cv-cover-copy{width:60%}.cv-bio{max-width:29ch}}
 @media(max-width:599px){
   .cv-top{margin:0 6%;min-height:78px;padding:20px 0}.cv-brand{font-size:1rem;gap:10px}.cv-brand span{font-size:.8rem;padding-left:10px}
-  .cv-rooftop-hero{height:auto;min-height:940px}.cv-rooftop-scene{background:#666}.cv-rooftop-scene img{top:180px;height:570px;left:67%;transform:translateX(-61.1%);mask-image:linear-gradient(to bottom,transparent,#000 15%)}
-  .cv-person{inset:252px 0 auto;height:500px;mask-image:linear-gradient(to bottom,transparent,#000 5%);-webkit-mask-image:linear-gradient(to bottom,transparent,#000 5%)}.cv-person img{left:67%;mask-image:linear-gradient(to right,transparent 0%,#000 8%);-webkit-mask-image:linear-gradient(to right,transparent 0%,#000 8%)}
-  .cv-rooftop-shade{background:linear-gradient(90deg,#090b0c66,transparent 70%),linear-gradient(180deg,#090b0c88,transparent 38%,transparent 59%,#202120 82%)}
-  .cv-hero-stage{display:block}.cv-cover-copy{width:100%;padding:30px 6% 36px}
-  .cv-eyebrow{font-size:.8rem;margin-bottom:24px}.cv-name{font-size:23vw;line-height:.84;letter-spacing:-.075em;margin-bottom:0}.cv-profile{font-size:1.4rem;max-width:none;margin-top:378px}.cv-bio{font-size:.94rem;max-width:34ch;margin-bottom:23px}
-  .cv-hero-actions{gap:14px 22px;font-size:.875rem}.cv-primary{padding:15px 20px}.cv-linkedin-hero{font-size:.875rem}
+  .cv-rooftop-hero{height:auto}.cv-rooftop-scene{background:#666}.cv-rooftop-scene img{top:120px;height:520px;left:73%;transform:translateX(-61.1%);mask-image:linear-gradient(to bottom,transparent,#000 15%)}
+  .cv-person{inset:170px 0 auto;height:min(470px,62svh);mask-image:linear-gradient(to bottom,transparent,#000 5%);-webkit-mask-image:linear-gradient(to bottom,transparent,#000 5%)}.cv-person img{left:75%;mask-image:linear-gradient(to right,transparent 0%,#000 8%);-webkit-mask-image:linear-gradient(to right,transparent 0%,#000 8%)}
+  .cv-rooftop-shade{background:linear-gradient(90deg,#090b0c66,transparent 70%),linear-gradient(180deg,#090b0c88,transparent 30%,transparent 42%,#202120e6 68%,#202120 82%)}
+  .cv-hero-stage{display:block}.cv-cover-copy{width:100%;padding:30px 6% 28px}
+  .cv-eyebrow{font-size:.8rem;margin-bottom:18px}.cv-name{font-size:23vw;line-height:.84;letter-spacing:-.075em;margin-bottom:0}.cv-profile{font-size:1.4rem;max-width:none;margin-top:clamp(96px,calc(100svh - 560px),300px)}.cv-bio{font-size:.94rem;max-width:34ch;margin-bottom:18px}
+  .cv-hero-actions{gap:10px 20px;font-size:.875rem}.cv-primary{padding:13px 18px}.cv-download{min-height:40px}.cv-linkedin-hero{font-size:.875rem}
   .cv-cover-footer{margin:0 6%;padding:22px 0 28px;grid-template-columns:1fr;gap:22px}.cv-cover-footer p{font-size:1.1rem}.cv-cover-footer div>span:last-child{font-size:.875rem}.cv-linkedin{position:static;justify-self:start;font-size:.875rem}
 }
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}

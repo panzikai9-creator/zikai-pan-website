@@ -180,7 +180,7 @@ export default function ResumeBody({ language }: { language: Language }) {
   const practices = experiences.filter(entry => entry.category === '专业实践').map(localize);
   return <div className="cv-paper" id="resume" ref={root}>
     <div className="cv-layout">
-      <aside className="cv-aside"><img className="cv-signature" src="./images/signature-black.png" alt="Zikai Pan" loading="lazy" />
+      <aside className="cv-aside"><img className="cv-signature" src="./images/signature-black.webp" alt="Zikai Pan" loading="lazy" />
         <nav className="cv-nav" aria-label={t.index}>
           <p className="cv-index-label">{t.index}</p>
           {sectionIds.map(id => <a key={id} href={`#${id}`} aria-current={current === id ? 'location' : undefined}>{sectionName(id)}</a>)}
@@ -196,7 +196,7 @@ export default function ResumeBody({ language }: { language: Language }) {
         </header>
         <section id="education" data-cv-section="">
           {header('education')}
-          <Entry title={language === 'zh' ? '香港大学' : 'The University of Hong Kong'} subtitle={language === 'zh' ? 'The University of Hong Kong' : '香港大学'} logos={[{file:"hku-business-school.png",alt:c.hkuLogo}]} meta={<><span>2027.08</span><span>{c.incoming}</span></>}>
+          <Entry title={language === 'zh' ? '香港大学' : 'The University of Hong Kong'} subtitle={language === 'zh' ? 'The University of Hong Kong' : '香港大学'} logos={[{file:"hku-business-school.webp",alt:c.hkuLogo}]} meta={<><span>2027.08</span><span>{c.incoming}</span></>}>
             <p className="cv-school-faculty">{language === 'zh' ? '港大经管学院 · HKU Business School' : 'HKU Business School · 港大经管学院'}</p>
             <Degree language={language} chinese="市场营销理学硕士" english="Master of Science in Marketing" />
             <PhotoStrip className="cv-photo-hku" photos={[
@@ -204,7 +204,7 @@ export default function ResumeBody({ language }: { language: Language }) {
               {file:"hku-main-building.webp",caption:language === "zh" ? "香港大学本部大楼" : "Main Building, The University of Hong Kong",alt:language === "zh" ? "蓝天下的香港大学本部大楼及钟楼" : "The University of Hong Kong Main Building and its clock tower under a blue sky",position:"50% 50%"}
             ]} />
           </Entry>
-          <Entry title={language === 'zh' ? '美国东北大学' : 'Northeastern University'} subtitle={language === 'zh' ? 'Northeastern University' : '美国东北大学'} logos={[{file:"northeastern-wordmark.png",alt:"Northeastern University"}]} meta={<><span>2023.09 – 2026.12</span><span>{c.expected}</span></>}>
+          <Entry title={language === 'zh' ? '美国东北大学' : 'Northeastern University'} subtitle={language === 'zh' ? 'Northeastern University' : '美国东北大学'} logos={[{file:"northeastern-wordmark.webp",alt:"Northeastern University"}]} meta={<><span>2023.09 – 2026.12</span><span>{c.expected}</span></>}>
             <p className="cv-school-faculty">{language === 'zh' ? 'D’Amore-McKim 商学院 · D’Amore-McKim School of Business' : 'D’Amore-McKim School of Business'}</p>
             <Degree language={language} chinese="工商管理理学学士 · 市场营销方向" english="Bachelor of Science in Business Administration · Concentration in Marketing" />
             <Degree language={language} chinese="辅修传播学" english="Minor in Communication Studies" />
@@ -216,7 +216,7 @@ export default function ResumeBody({ language }: { language: Language }) {
               {file:"northeastern-sunset.webp",caption:language === "zh" ? "校园日落" : "Sunset on campus",alt:language === "zh" ? "暮色中的美国东北大学校园" : "The Northeastern University campus at sunset"}
             ]} />
           </Entry>
-          <Entry title={language === 'zh' ? '合肥安生学校' : 'Hefei Thomas School'} subtitle={language === 'zh' ? 'Hefei Thomas School' : '合肥安生学校'} logos={[{file:"hefei-thomas-lockup-v7.png",alt:c.highLogo}]} meta="2020.08 – 2023.06">
+          <Entry title={language === 'zh' ? '合肥安生学校' : 'Hefei Thomas School'} subtitle={language === 'zh' ? 'Hefei Thomas School' : '合肥安生学校'} logos={[{file:"hefei-thomas-lockup-v7.webp",alt:c.highLogo}]} meta="2020.08 – 2023.06">
             <div className="cv-honors-visible"><p className="cv-detail-heading">{t.honors}</p>
               <div className="cv-honors">{c.highGroups.map(group => <div key={group.title}>
                 <strong>{group.title}</strong><ul>{group.items.map(item => <li key={item}>{item}</li>)}</ul>
@@ -232,9 +232,9 @@ export default function ResumeBody({ language }: { language: Language }) {
         <section id="experience" data-cv-section="">
           {header('experience')}
           {jobs.map(entry => <Entry key={entry.id} title={entry.org} subtitle={entry.title}
-            logos={entry.id === 'orient' ? [{file:'orient-securities-v7.png',alt:language === 'zh' ? '东方证券标志' : 'Orient Securities logo'}]
-              : entry.id === 'conch' ? [{file:'conch-fund.png',alt:language === 'zh' ? '海创基金标志' : 'Conch Fund logo'}]
-              : entry.id.startsWith('domino-') ? [{file:'domino-education-v7.png',alt:language === 'zh' ? '多米诺国际教育标志' : 'Domino International Education logo'}] : undefined}
+            logos={entry.id === 'orient' ? [{file:'orient-securities-v7.webp',alt:language === 'zh' ? '东方证券标志' : 'Orient Securities logo'}]
+              : entry.id === 'conch' ? [{file:'conch-fund.webp',alt:language === 'zh' ? '海创基金标志' : 'Conch Fund logo'}]
+              : entry.id.startsWith('domino-') ? [{file:'domino-education-v7.webp',alt:language === 'zh' ? '多米诺国际教育标志' : 'Domino International Education logo'}] : undefined}
             meta={<><span>{entry.date}</span><span>{entry.location}</span></>}>
             <p>{entry.summary}</p>
             {entry.id === 'orient' && <dl className="cv-numbers">{['30+', '10+', '8,000+'].map((n, i) =>
@@ -254,7 +254,7 @@ export default function ResumeBody({ language }: { language: Language }) {
           {header('skills')}
           <dl className="cv-skill-rows">{t.skills.map(([title, value]) => <div key={title}><dt>{title}</dt><dd>{value}</dd></div>)}</dl>
           {practices.map(entry => <Entry key={entry.id} title={entry.title} subtitle={entry.org} meta={entry.date}
-            logos={entry.id === 'photography' ? [{file:'visual-china-group.png',alt:language === 'zh' ? '视觉中国标志' : 'Visual China Group logo'}] : undefined}>
+            logos={entry.id === 'photography' ? [{file:'visual-china-group.webp',alt:language === 'zh' ? '视觉中国标志' : 'Visual China Group logo'}] : undefined}>
             {entry.id === 'photography'
               ? <div className="cv-gallery"><p className="cv-gallery-intro">{entry.summary}</p><Gallery language={language}/></div>
               : <p>{entry.summary}</p>}

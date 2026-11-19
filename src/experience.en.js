@@ -5,7 +5,6 @@ export const englishEntries = {
     summary: 'Using social media feedback and competitor positioning to find a brand proposition that resonates with skateboarders.',
     metric: '3 competitors', metricNote: 'Vans / Adidas / Converse',
     tags: ['Brand strategy', 'Consumer insight'],
-    imageAlt: 'Black-and-white skatepark concept image', imageLabel: 'Concept image',
     details: [
       ['Research question', 'Airwalk has deep roots in skateboarding culture. Why has the distance between the brand and today’s consumers grown?'],
       ['Understanding the perception gap', 'I reviewed Airwalk’s historical positioning and analyzed authentic consumer feedback on social media, comparing the brand’s intended story with how people perceived it.'],
@@ -20,7 +19,6 @@ export const englishEntries = {
     summary: 'Comparing two estimation methods to investigate whether promotional offers increase users’ daily viewing time.',
     metric: '2 estimation methods', metricNote: 'OLS / IPW',
     tags: ['Quantitative marketing', 'Causal inference'],
-    imageAlt: 'Red photographic film concept image', imageLabel: 'Concept image',
     details: [
       ['Research question', 'Does using a promotional offer cause Netflix users to spend more time watching each day?'],
       ['Defining the treatment effect', 'I treated offer use as the treatment and daily viewing time as the outcome. I identified confounders and mediators, then estimated the average treatment effect using covariate-adjusted ordinary least squares regression (OLS).'],

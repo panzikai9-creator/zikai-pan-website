@@ -54,8 +54,8 @@ function Cover({lang,onLang}:{lang:Language;onLang:(l:Language)=>void}) {
   return <section className="cv-cover" id="home" aria-labelledby="cover-title">
     <a className="cv-skip" href="#resume">{t.jump}</a>
     <div className="cv-rooftop-hero">
-    <div className="cv-rooftop-scene" aria-hidden="true"><img src="./images/rooftop-background-v9.png" alt=""/></div>
-    <div className="cv-person"><img src="./images/portrait-original-v9.png" fetchPriority="high" alt={t.portrait}/></div>
+    <div className="cv-rooftop-scene" aria-hidden="true"><img src="./images/rooftop-background-v9.webp" alt=""/></div>
+    <div className="cv-person"><img src="./images/portrait-original-v9.webp" fetchPriority="high" alt={t.portrait}/></div>
     <div className="cv-rooftop-shade" aria-hidden="true" />
     <header className="cv-top">
       <a className="cv-brand" href="#home" aria-label={t.home}>ZIKAI PAN<span>潘子恺</span></a>

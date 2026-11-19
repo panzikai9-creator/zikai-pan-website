@@ -1,6 +1,6 @@
 export const projects = [
   {
-    id: 'airwalk', brand: 'Airwalk', image: 'skate.jpg', imageAlt: '黑白滑板场景概念配图',
+    id: 'airwalk', brand: 'Airwalk',
     field: '品牌策略', method: '消费者研究', title: '让滑手的故事回到品牌中心',
     blurb: '从社交媒体评论和竞品定位出发，为 Airwalk 寻找能与滑手产生共鸣的品牌主张。',
     context: '美国东北大学 · 市场策略与消费者行为咨询项目',
@@ -13,7 +13,7 @@ export const projects = [
     result: '团队交付了品牌定位与整合传播提案，核心主张为 “Dare to Comeback”。',
   },
   {
-    id: 'netflix', brand: 'Netflix', image: 'film.jpg', imageAlt: '红色胶片概念配图',
+    id: 'netflix', brand: 'Netflix',
     field: '定量营销', method: '因果推断', title: '促销能让用户看得更久吗？',
     blurb: '以日均观看时长为指标，用两种估计方法检验 Netflix 用户使用优惠后的行为变化。',
     context: '美国东北大学 · 定量营销研究项目',
