@@ -16,6 +16,7 @@ type ResumeEntry = {
   date?: string;
   location?: string;
   role?: string;
+  facts?: string[][];
 };
 const sectionIds = ['education', 'experience', 'projects', 'skills', 'contact'] as const;
 type SectionId = typeof sectionIds[number];
@@ -26,7 +27,6 @@ const labels = {
     courses: '消费者数据定量分析、新产品开发、市场营销与社会、战略实践、营销管理',
     hongKong: '香港大学经管学院', boston: 'D’Amore-McKim 商学院 · 辅修传播学',
     experienceDetails: '工作内容', projectDetails: '研究方法与个人贡献', gallery: '校园与生活影像',
-    keyFacts: ['家机构客户参与调研', '份市场周报', '次文章累计阅读'],
     skills: [
       ['研究方法', '消费者访谈、问卷设计、竞品定位、倾向得分分析与逆概率加权'],
       ['分析工具', 'R、SPSS、Excel（数据透视表、查找函数与可视化）、Wind、Bloomberg'],
@@ -42,7 +42,6 @@ const labels = {
     courses: 'Quantitative Analysis of Consumer Data, New Product Development, Marketing and Society, Strategy in Action, Marketing Management',
     hongKong: 'HKU Business School', boston: 'D’Amore-McKim School of Business · Minor in Communication Studies',
     experienceDetails: 'Responsibilities', projectDetails: 'Methods and contribution', gallery: 'Campus and personal photographs',
-    keyFacts: ['institutional clients surveyed or interviewed', 'weekly market briefings', 'total article views'],
     skills: [
       ['Research', 'Consumer interviews, survey design, competitor positioning, propensity scores and inverse probability weighting'],
       ['Analytics', 'R, SPSS, Excel (PivotTables, lookup functions and visualization), Wind, Bloomberg'],
@@ -234,11 +233,11 @@ export default function ResumeBody({ language }: { language: Language }) {
           {jobs.map(entry => <Entry key={entry.id} title={entry.org} subtitle={entry.title}
             logos={entry.id === 'orient' ? [{file:'orient-securities-v7.webp',alt:language === 'zh' ? '东方证券标志' : 'Orient Securities logo'}]
               : entry.id === 'conch' ? [{file:'conch-fund.webp',alt:language === 'zh' ? '海创基金标志' : 'Conch Fund logo'}]
-              : entry.id.startsWith('domino-') ? [{file:'domino-education-v7.webp',alt:language === 'zh' ? '多米诺国际教育标志' : 'Domino International Education logo'}] : undefined}
+              : entry.id === 'domino' ? [{file:'domino-education-v7.webp',alt:language === 'zh' ? '多米诺国际教育标志' : 'Domino International Education logo'}] : undefined}
             meta={<><span>{entry.date}</span><span>{entry.location}</span></>}>
             <p>{entry.summary}</p>
-            {entry.id === 'orient' && <dl className="cv-numbers">{['30+', '10+', '8,000+'].map((n, i) =>
-              <div key={n}><dt>{n}</dt><dd>{t.keyFacts[i]}</dd></div>)}</dl>}
+            {entry.facts && <dl className="cv-numbers">{entry.facts.map(([n, label]) =>
+              <div key={n}><dt>{n}</dt><dd>{label}</dd></div>)}</dl>}
             <Disclosure title={t.experienceDetails} className="cv-print-detail"><Notes rows={entry.details} /></Disclosure>
           </Entry>)}
         </section>

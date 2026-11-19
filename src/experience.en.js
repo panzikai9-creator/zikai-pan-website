@@ -38,28 +38,23 @@ export const englishEntries = {
       ['Marketing project support', 'Contributed campaign ideas, content plans, and presentation materials while supporting client communication and project implementation.']
     ]
   },
-  'domino-operations': {
-    category: 'Experience', title: 'Partner, Operations & Branding', org: 'Domino Education · Hefei',
-    location: 'Hefei', tags: ['Brand promotion', 'Education operations'],
-    summary: 'Participated in day-to-day operations and brand promotion as an equity partner in an education company.',
+  domino: {
+    category: 'Experience', title: 'Partner · Operations, Branding & Teaching', org: 'Domino International Education · Hefei',
+    location: 'Hefei', tags: ['Operations', 'Brand building', 'Curriculum design', 'Teaching'],
+    summary: 'As an equity partner, I helped build the education center from the ground up, leading site selection, interior design and brand identity, while also teaching language and business courses. The center now has an 11-person team and 30–45 students enrolled year-round.',
+    facts: [['30–45', 'students year-round'], ['11', 'teachers & advisors'], ['5 → 7', 'IELTS Speaking in 2 months']],
     details: [
-      ['Operations and promotion', 'As a partner, I participated in daily operations and supported the promotion of the company’s educational services.'],
-      ['Connecting operations with teaching', 'During this period, I also taught IELTS Reading and CET-4/6 courses, using students’ learning needs to inform my understanding of course services.']
-    ]
-  },
-  'domino-teaching': {
-    category: 'Experience', title: 'IELTS Reading & CET-4/6 Instructor', org: 'Domino Education · Hefei',
-    location: 'Hefei', tags: ['English teaching', 'Exam preparation'],
-    summary: 'Taught IELTS Reading and College English Test courses, tailoring reading practice to students’ preparation needs.',
-    details: [
-      ['Teaching', 'Delivered IELTS Reading and College English Test Band 4 and Band 6 courses.'],
-      ['Exam preparation', 'Designed focused practice and preparation guidance around students’ reading difficulties and examination goals.']
+      ['Launch and brand', 'Led site selection, interior design, logo design and advertising for the center. The team now includes 3 full-time teachers, 6 part-time teachers and 2 student advisors, running large classes (7–10 students) and small classes (2–5) across TOEFL, IELTS, PET, Duolingo English Test, SAT, ACT, AP Microeconomics and Macroeconomics, AP Calculus AB/BC and A-Level.'],
+      ['Language teaching', 'Taught IELTS Reading and College English Test Band 4/6 from June 2025 to February 2026. One student raised their IELTS score from 5.5 to 6.5 over a single summer (Reading 7, Speaking 6.5) and now studies Finance at the University of Amsterdam; another improved their IELTS Speaking from 5 to 7 in two months.'],
+      ['Competition coaching', 'Coached students for economics and finance competitions including ASDAN, NEC and Wharton competitions; the strongest result was a national silver award at NEC.'],
+      ['AP Business curriculum', 'Independently built a full-year teaching and exam-preparation system for College Board’s new AP Business with Personal Finance course, based on its Course and Exam Description: a 36-week schedule, unit-level hours and exam weightings for all five units, two year-long projects (Business Canvas and Financial Advisor) and a complete set of self-made teaching slides.']
     ]
   },
   orient: {
     category: 'Experience', title: 'Marketing Intern', org: 'Orient Securities · Nanjing Branch',
     location: 'Nanjing', tags: ['Client research', 'Financial communication'],
     metric: '30+ clients', metricNote: 'Institutional clients covered by research',
+    facts: [['30+', 'institutional clients surveyed or interviewed'], ['10+', 'weekly market briefings'], ['8,000+', 'total article views']],
     summary: 'Used surveys and interviews to understand institutional clients’ needs, supporting communication through market briefings and investor education.',
     details: [
       ['Institutional client research', 'Conducted interviews and surveys with more than 30 institutional clients. I identified needs relating to financial communication, sector insights and faster market updates, then prepared a report to inform quarterly marketing strategy adjustments.'],
