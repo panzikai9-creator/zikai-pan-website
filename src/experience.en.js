@@ -28,7 +28,7 @@ export const englishEntries = {
     ]
   },
   conch: {
-    category: 'Experience', title: 'Marketing Intern', org: 'Haichuang (Shanghai) Private Equity Fund Management Co., Ltd.',
+    category: 'Experience', title: 'Investor Relations Intern', org: 'Haichuang (Shanghai) Private Equity Fund Management Co., Ltd.',
     location: 'Shanghai', tags: ['Market research', 'Marketing planning'],
     summary: 'Supported market research, consumer analysis, and marketing projects, contributing insights to strategy development, content planning, and project execution.',
     details: [

@@ -32,6 +32,7 @@ const labels = {
       ['分析工具', 'R、SPSS、Excel（数据透视表、查找函数与可视化）、Wind、Bloomberg'],
       ['商业沟通', '市场简报、投资者教育内容、PowerPoint 商业演示'],
       ['语言', '普通话（母语）、英语（熟练）'],
+      ['考试成绩', '托福 iBT 101（阅读 27、听力 25、口语 23、写作 26）；AP 微观经济学 5 分、AP 宏观经济学 5 分'],
       ['资质', '国家二级羽毛球裁判员（国家体育总局）'],
     ],
     contact: '欢迎交流市场营销、品牌策略与消费者研究。', email: '邮箱',
@@ -47,6 +48,7 @@ const labels = {
       ['Analytics', 'R, SPSS, Excel (PivotTables, lookup functions and visualization), Wind, Bloomberg'],
       ['Communication', 'Market briefings, investor education and PowerPoint business presentations'],
       ['Languages', 'Mandarin (native), English (proficient)'],
+      ['Test scores', 'TOEFL iBT 101 (Reading 27, Listening 25, Speaking 23, Writing 26); AP Microeconomics 5, AP Macroeconomics 5'],
       ['Certification', 'National Level II Badminton Referee, General Administration of Sport of China'],
     ],
     contact: 'Get in touch about marketing, brand strategy or consumer research.', email: 'Email',
@@ -111,8 +113,8 @@ function NortheasternHonors({ language }: { language: Language }) {
         </ul></dd>
       </div>
       <div>
-        <dt>{zh ? '学术奖学金' : 'Academic Scholarship'}<span>2025–2026</span></dt>
-        <dd lang="en">D’Amore-McKim School of Business Scholarship and Award</dd>
+        <dt>{zh ? '学术成就奖学金 · 32,000 美元' : 'Academic Achievement Scholarship · $32,000'}<span>Fall 2025</span></dt>
+        <dd lang="en">Academic Achievement Award, Northeastern University</dd>
       </div>
       <div>
         <dt>{zh ? '国际学生大使提名' : 'Global Student Ambassador nomination'}<span>2023–2024</span></dt>
@@ -207,7 +209,7 @@ export default function ResumeBody({ language }: { language: Language }) {
             <p className="cv-school-faculty">{language === 'zh' ? 'D’Amore-McKim 商学院 · D’Amore-McKim School of Business' : 'D’Amore-McKim School of Business'}</p>
             <Degree language={language} chinese="工商管理理学学士 · 市场营销方向" english="Bachelor of Science in Business Administration · Concentration in Marketing" />
             <Degree language={language} chinese="辅修传播学" english="Minor in Communication Studies" />
-            <p className="cv-academic-facts"><strong>GPA 3.74 / 4.0</strong></p>
+            <p className="cv-academic-facts"><strong>GPA 3.78 / 4.0</strong><span>{language === 'zh' ? '预计以 magna cum laude（极优等）荣誉毕业' : 'Expected magna cum laude'}</span></p>
             <NortheasternHonors language={language} />
             <Disclosure title={t.coursework} className="cv-print-detail"><p>{t.courses}</p></Disclosure>
             <PhotoStrip className="cv-photo-neu" photos={[
