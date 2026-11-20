@@ -1,0 +1,57 @@
+/* Full-bleed chapter openers (and the closing section), built on ScrollExpand. */
+.chapter { --chapter-ink: #fff9eb; --chapter-bg: #202120; position: relative; z-index: 2; background: var(--chapter-bg); color: var(--chapter-ink); }
+.chapter .scroll-expand__stage { background: var(--chapter-bg); }
+/* Starts black-and-white like the cover and blooms into colour as the frame opens. */
+.chapter .scroll-expand__media {
+  object-position: var(--chapter-media-position, 50% 50%);
+  filter: grayscale(calc(1 - var(--se-progress, 0))) brightness(calc(.62 + .3 * var(--se-progress, 0)));
+}
+/* Taller, stronger scrim than the default so captions stay legible over bright photos. */
+.chapter .scroll-expand__scrim {
+  background: linear-gradient(to top, rgba(10, 11, 10, .9) 0%, rgba(10, 11, 10, .66) 34%, rgba(10, 11, 10, .2) 60%, rgba(10, 11, 10, 0) 72%, rgba(10, 11, 10, .18));
+}
+.chapter .scroll-expand__title {
+  font-family: "Arial Black", "Helvetica Neue", Helvetica, Arial, "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-weight: 900; letter-spacing: -.045em; color: var(--chapter-ink);
+  text-shadow: 0 2px 30px rgba(0, 0, 0, .55);
+}
+.chapter-title { display: flex; flex-direction: column; align-items: center; gap: .28em; }
+.chapter-title-num {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; font-weight: 600;
+  font-size: max(12px, .2em); letter-spacing: .32em; padding-left: .32em; opacity: .85;
+}
+.chapter .scroll-expand__hint { color: #fff9eb99; font-size: .75rem; letter-spacing: .14em; text-transform: uppercase; }
+.chapter .scroll-expand__overlay {
+  align-items: flex-start; justify-content: flex-end; text-align: left;
+  padding: 0 4.5% clamp(40px, 8vh, 88px);
+}
+.chapter-copy { max-width: 780px; text-shadow: 0 1px 18px rgba(0, 0, 0, .35); }
+.chapter-copy .cv-primary { text-shadow: none; }
+.chapter .chapter-eyebrow { font-size: .875rem; text-transform: uppercase; letter-spacing: .13em; margin: 0 0 16px; color: #e4dfd6; }
+.chapter .chapter-heading { font-size: clamp(1.9rem, 4.2vw, 3.8rem); line-height: 1.06; letter-spacing: -.045em; font-weight: 650; margin: 0 0 16px; word-break: keep-all; overflow-wrap: anywhere; }
+.chapter .chapter-body { font-size: clamp(1rem, 1.35vw, 1.18rem); line-height: 1.6; max-width: 48ch; margin: 0 0 26px; color: #eee9df; }
+.chapter .chapter-copy > :last-child { margin-bottom: 0; }
+.chapter .chapter-facts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); max-width: 600px; margin: 4px 0 0; }
+.chapter-facts > div { min-width: 0; padding: 0 16px; border-left: 1px solid #fff9eb55; }
+.chapter-facts > div:first-child { padding-left: 0; border-left: 0; }
+.chapter .chapter-facts dt { font-size: clamp(1.5rem, 2.8vw, 2.6rem); line-height: 1; letter-spacing: -.05em; font-weight: 500; }
+.chapter .chapter-facts dd { margin: 7px 0 0; font-size: .84rem; color: #e4dfd6; }
+.chapter-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 28px; font-size: .94rem; }
+.chapter-actions a { color: var(--chapter-ink); text-decoration: none; }
+.chapter-actions a:not(.cv-primary):hover { text-decoration: underline; text-underline-offset: 5px; }
+.chapter :focus-visible { outline: 2px solid currentColor; outline-offset: 5px; }
+/* Caption at the top, for media whose interest sits low in the frame (the cloud video). */
+.chapter--top .scroll-expand__overlay { justify-content: flex-start; padding: clamp(72px, 12vh, 120px) 4.5% 0; }
+.chapter--top .scroll-expand__scrim {
+  background: linear-gradient(to bottom, rgba(10, 11, 10, .86) 0%, rgba(10, 11, 10, .6) 30%, rgba(10, 11, 10, .14) 56%, rgba(10, 11, 10, 0) 70%);
+}
+@media (max-width: 599px) {
+  .chapter .scroll-expand__overlay { padding: 0 6% 36px; }
+  .chapter .chapter-eyebrow { font-size: .78rem; margin-bottom: 12px; }
+  .chapter .chapter-body { font-size: .94rem; margin-bottom: 22px; }
+  .chapter-facts > div { padding: 0 10px; }
+  .chapter--top .scroll-expand__overlay { padding: 56px 6% 0; }
+  .chapter .chapter-facts dd { font-size: .78rem; }
+  .chapter-actions { gap: 10px 22px; font-size: .875rem; }
+}
+@media print { .chapter { display: none !important; } }

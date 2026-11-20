@@ -34,6 +34,19 @@
 .cv-aside-tools :is(a,button) { font: inherit; font-size: .88rem; text-decoration: none; cursor: pointer; border: 0; background: none; padding: 3px 0; }
 .cv-aside-tools a span { font-size: .75rem; color: var(--cv-muted); letter-spacing: .06em; }
 .cv-text { min-width: 0; }
+/* Chapter layout: the sidebar lives on a rail layer spanning the whole paper (so it stays sticky
+   from chapter to chapter); each chapter's content sits in the right-hand column. */
+.cv-paper--chapters { position: relative; }
+.cv-aside-rail { position: absolute; inset: 0; z-index: 1; pointer-events: none; }
+.cv-aside-rail-grid {
+  width: min(100%, 1520px); height: 100%; margin: auto; box-sizing: border-box;
+  padding: clamp(54px,7vw,110px) clamp(24px,5.5vw,92px) 34px;
+  display: grid; grid-template-columns: minmax(155px,.28fr) minmax(0,1fr); gap: clamp(35px,6vw,118px);
+}
+.cv-aside-rail .cv-aside { pointer-events: auto; align-self: start; }
+.cv-paper--chapters .cv-layout > .cv-text { grid-column: 2; }
+/* The opening page holds the CV title and bio, with room for the full contents list beside it. */
+.cv-layout--intro { min-height: 660px; }
 .cv-intro { padding: 0 0 clamp(28px,4vw,50px); }
 .cv-intro h2 { font-size: clamp(2.8rem,5vw,5.2rem); letter-spacing: -.055em; line-height: 1.02; font-weight: 500; }
 .cv-intro p { max-width: 67ch; margin-top: 18px; font-size: clamp(1rem,1.4vw,1.2rem); line-height: 1.65; }
@@ -121,6 +134,9 @@
 .cv-print-contact { display: none; }
 @media (max-width: 760px) {
   .cv-layout { display: flex; flex-direction: column; gap: 28px; padding: 35px 22px 25px; }
+  .cv-aside-rail { position: static; }
+  .cv-aside-rail-grid { display: block; height: auto; padding: 35px 22px 0; }
+  .cv-layout--intro { min-height: 0; padding-top: 28px; }
   .cv-aside { position: static; width: 100%; }
   .cv-signature { display: none; }
   .cv-nav { display: flex; flex-wrap: wrap; column-gap: 18px; padding: 8px 0; border-bottom: 1px solid var(--cv-rule); }
@@ -160,7 +176,7 @@
   .cv-paper { color: black; background: white; font-size: 10pt; line-height: 1.35; }
   .cv-layout { display: block; width: 100%; padding: 0; }
   .cv-entry-logos, .cv-photo-strip { display: none !important; }
-  .cv-aside, .cv-footer, .cv-gallery, .cv-disclosure > summary { display: none !important; }
+  .cv-aside, .cv-aside-rail, .cv-footer, .cv-gallery, .cv-disclosure > summary { display: none !important; }
   .cv-print-contact { display: block; margin: 5pt 0; }
   .cv-intro { padding: 0 0 12pt; }
   .cv-intro h2 { font-size: 20pt; }

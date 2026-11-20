@@ -5,6 +5,8 @@ import { experiences, studies } from './experience.js';
 import { englishEntries } from './experience.en.js';
 import Gallery from './Gallery.jsx';
 import { emails, phone, linkedin } from './contact';
+import { ChapterOpener } from './Chapter';
+import { chapterCopy, chapterMedia, chapterNumbers, type ChapterKey } from './chapters';
 import './resume-body.css';
 
 type Language = 'zh' | 'en';
@@ -178,8 +180,19 @@ export default function ResumeBody({ language }: { language: Language }) {
     : entry;
   const jobs = experiences.filter(entry => entry.category === '职业经历').map(localize);
   const practices = experiences.filter(entry => entry.category === '专业实践').map(localize);
-  return <div className="cv-paper" id="resume" ref={root}>
-    <div className="cv-layout">
+  const opener = (key: ChapterKey) => <ChapterOpener
+    lang={language === 'zh' ? 'zh-CN' : 'en'}
+    label={sectionName(key)}
+    number={chapterNumbers[key]}
+    title={sectionName(key)}
+    hint={key === 'education' ? (language === 'zh' ? '向下滚动' : 'Scroll') : undefined}
+    {...chapterCopy[language][key]}
+    media={{ ...chapterMedia[key].media, alt: chapterMedia[key].alt[language] }}
+    className={chapterMedia[key].className}
+  />;
+  return <div className="cv-paper cv-paper--chapters" id="resume" ref={root}>
+    {/* The sidebar sits on its own layer so it can stay sticky across chapters; chapter openers slide over it. */}
+    <div className="cv-aside-rail"><div className="cv-aside-rail-grid">
       <aside className="cv-aside"><img className="cv-signature" src="./images/signature-black.webp" alt="Zikai Pan" loading="lazy" />
         <nav className="cv-nav" aria-label={t.index}>
           <p className="cv-index-label">{t.index}</p>
@@ -190,10 +203,14 @@ export default function ResumeBody({ language }: { language: Language }) {
           <button type="button" onClick={() => window.print()}>{t.print}</button>
         </div>
       </aside>
-      <div className="cv-text">
+    </div></div>
+    <div className="cv-layout cv-layout--intro"><div className="cv-text">
         <header className="cv-intro"><h2>{t.title}</h2><p>{c.bio}</p>
           <div className="cv-print-contact">{c.name} · {emails[0]} · {phone.display} · linkedin.com/in/zikai-pan-376a5329b</div>
         </header>
+    </div></div>
+    {opener('education')}
+    <div className="cv-layout"><div className="cv-text">
         <section id="education" data-cv-section="">
           {header('education')}
           <Entry title={language === 'zh' ? '香港大学' : 'The University of Hong Kong'} subtitle={language === 'zh' ? 'The University of Hong Kong' : '香港大学'} logos={[{file:"hku-business-school.webp",alt:c.hkuLogo}]} meta={<><span>2027.08</span><span>{c.incoming}</span></>}>
@@ -229,6 +246,9 @@ export default function ResumeBody({ language }: { language: Language }) {
             ]} />
           </Entry>
         </section>
+    </div></div>
+    {opener('experience')}
+    <div className="cv-layout"><div className="cv-text">
         <section id="experience" data-cv-section="">
           {header('experience')}
           {jobs.map(entry => <Entry key={entry.id} title={entry.org} subtitle={entry.title}
@@ -242,6 +262,9 @@ export default function ResumeBody({ language }: { language: Language }) {
             <Disclosure title={t.experienceDetails} className="cv-print-detail"><Notes rows={entry.details} /></Disclosure>
           </Entry>)}
         </section>
+    </div></div>
+    {opener('projects')}
+    <div className="cv-layout"><div className="cv-text">
         <section id="projects" data-cv-section="">
           {header('projects')}
           {studies.map(localize).map(entry => <Entry key={entry.id} title={entry.title} subtitle={entry.org} meta={entry.role}
@@ -250,6 +273,9 @@ export default function ResumeBody({ language }: { language: Language }) {
             <Disclosure title={t.projectDetails} className="cv-print-detail"><Notes rows={entry.details.slice(0, -1)} /></Disclosure>
           </Entry>)}
         </section>
+    </div></div>
+    {opener('skills')}
+    <div className="cv-layout"><div className="cv-text">
         <section id="skills" data-cv-section="">
           {header('skills')}
           <dl className="cv-skill-rows">{t.skills.map(([title, value]) => <div key={title}><dt>{title}</dt><dd>{value}</dd></div>)}</dl>

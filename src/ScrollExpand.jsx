@@ -4,6 +4,8 @@
 // - prefers-reduced-motion or enabled={false}: show the finished state with no pinned scroll
 // - overlay links are only clickable once the overlay is visible
 // - exposes the eased progress (0–1) as the CSS variable --se-progress for extra styling
+// - images lazy-load; videos load and play only near the viewport (never under reduced motion)
+// - title accepts any React node; idle instances skip work while the page scrolls elsewhere
 import React, { useCallback, useEffect, useRef } from 'react';
 
 import './ScrollExpand.css';
@@ -21,7 +23,7 @@ const smoothstep = (edge0, edge1, x) => {
  * @property {'image' | 'video'} [mediaType]
  * @property {string} [poster] Poster frame used while a video loads.
  * @property {string} [alt]
- * @property {string} [title] Headline held over the frame that lifts away as the media takes over.
+ * @property {import('react').ReactNode} [title] Headline held over the frame that lifts away as the media takes over.
  * @property {string} [scrollHint] Small cue under the resting frame.
  * @property {number} [startWidth] Resting frame width, % of the stage.
  * @property {number} [startHeight] Resting frame height, % of the stage.
@@ -34,6 +36,7 @@ const smoothstep = (edge0, edge1, x) => {
  * @property {number} [overlayScrim] Strength of the scrim behind overlay content.
  * @property {boolean} [useWindowScroll] Drive from the page scroll instead of an inner scroller.
  * @property {boolean} [enabled]
+ * @property {'lazy' | 'eager'} [loading] Loading strategy for image media.
  * @property {import('react').ReactNode} [children] Content that fades in at full bleed.
  * @property {string} [className]
  * @property {import('react').CSSProperties} [style]
@@ -58,6 +61,7 @@ const ScrollExpand = ({
   overlayScrim = 0.45,
   useWindowScroll = false,
   enabled = true,
+  loading = 'lazy',
   children,
   className = '',
   style,
@@ -190,6 +194,7 @@ const ScrollExpand = ({
 
     const onScroll = () => {
       target = readProgress();
+      if (!running && Math.abs(target - current) < 0.0004) return;
       if (propsRef.current.smoothing <= 0 || isStatic()) {
         current = target;
         applyProgress(current);
@@ -224,6 +229,27 @@ const ScrollExpand = ({
     };
   }, [applyProgress, useWindowScroll, enabled]);
 
+  // Videos stay unloaded until the section is near the viewport, and pause when it leaves.
+  useEffect(() => {
+    const root = rootRef.current;
+    const video = mediaRef.current;
+    if (mediaType !== 'video' || !root || !video) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          const played = video.play();
+          if (played && typeof played.catch === 'function') played.catch(() => {});
+        } else {
+          video.pause();
+        }
+      },
+      { rootMargin: '300px 0px' }
+    );
+    io.observe(root);
+    return () => io.disconnect();
+  }, [mediaType, src]);
+
   const media =
     mediaType === 'video' ? (
       <video
@@ -231,13 +257,14 @@ const ScrollExpand = ({
         className="scroll-expand__media"
         src={src}
         poster={poster}
-        autoPlay
+        preload="none"
         muted
         loop
         playsInline
+        aria-hidden="true"
       />
     ) : (
-      <img ref={mediaRef} className="scroll-expand__media" src={src} alt={alt} draggable={false} />
+      <img ref={mediaRef} className="scroll-expand__media" src={src} alt={alt} loading={loading} decoding="async" draggable={false} />
     );
 
   return (
