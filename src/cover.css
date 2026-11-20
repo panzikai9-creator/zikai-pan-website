@@ -9,6 +9,10 @@
 .cv-sr,.cv-skip:not(:focus){position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
 .cv-skip:focus{position:absolute;z-index:90;background:#fff;color:#161616;top:80px;left:24px;padding:1rem}
 .cv-rooftop-hero{position:relative;isolation:isolate;display:flex;flex-direction:column;height:clamp(780px,100svh,1080px);overflow:hidden}
+.cv-rooftop-motion{position:absolute;inset:0;z-index:-2;isolation:isolate;pointer-events:none;transform-origin:center;transform:none}
+@media screen and (min-width:901px) and (hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference){
+  .cv-rooftop-motion{transform:translate3d(var(--parallax-x,0px),var(--parallax-y,0px),0) scale(1.05);will-change:transform}
+}
 .cv-rooftop-scene,.cv-rooftop-shade{position:absolute;inset:0;pointer-events:none}
 .cv-rooftop-scene{z-index:-3;overflow:hidden;background:#202120;filter:grayscale(1)}
 .cv-rooftop-scene img{position:absolute;left:calc(76% + 55px);top:0;height:100%;width:auto;max-width:none;transform:translateX(-64.65%)}

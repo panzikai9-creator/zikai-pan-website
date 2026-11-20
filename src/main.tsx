@@ -16,8 +16,85 @@ function initialLanguage(): Language {
   if (value === 'zh' || value === 'en') return value
   try { return localStorage.getItem('portfolio-language') === 'en' ? 'en' : 'zh' } catch { return 'zh' }
 }
+function useHeroParallax() {
+  const hero = useRef<HTMLDivElement>(null)
+  const photo = useRef<HTMLDivElement>(null)
+  useEffect(() => {
+    const surface = hero.current, layer = photo.current
+    if (!surface || !layer) return
+    const allowed = matchMedia('(min-width:901px) and (hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference)')
+    const limit = 12 // Maximum distance in any direction, including diagonals.
+    let enabled = allowed.matches, frame = 0, previous = 0
+    let x = 0, y = 0, targetX = 0, targetY = 0, returning = false
+    const draw = () => {
+      layer.style.setProperty('--parallax-x', `${x.toFixed(3)}px`)
+      layer.style.setProperty('--parallax-y', `${y.toFixed(3)}px`)
+    }
+    const tick = (time: number) => {
+      frame = 0
+      const elapsed = previous ? Math.min(time - previous, 64) : 16.67
+      previous = time
+      const damping = 1 - Math.exp(-elapsed / (returning ? 260 : 150))
+      x += (targetX - x) * damping
+      y += (targetY - y) * damping
+      if (Math.hypot(targetX - x, targetY - y) < .02) {
+        x = targetX; y = targetY; previous = 0
+      } else frame = requestAnimationFrame(tick)
+      draw()
+    }
+    const animate = () => {
+      if (!frame) { previous = 0; frame = requestAnimationFrame(tick) }
+    }
+    const reset = () => {
+      cancelAnimationFrame(frame)
+      frame = previous = x = y = targetX = targetY = 0
+      layer.style.removeProperty('--parallax-x')
+      layer.style.removeProperty('--parallax-y')
+    }
+    const center = () => {
+      if (!enabled) return
+      targetX = targetY = 0; returning = true
+      if (x || y || frame) animate()
+    }
+    const move = (event: PointerEvent) => {
+      if (!enabled || document.hidden) return
+      if (event.pointerType !== 'mouse') { center(); return }
+      const bounds = surface.getBoundingClientRect()
+      if (!bounds.width || !bounds.height) return
+      const nx = Math.max(-1, Math.min(1, (event.clientX - bounds.left) / bounds.width * 2 - 1))
+      const ny = Math.max(-1, Math.min(1, (event.clientY - bounds.top) / bounds.height * 2 - 1))
+      const distance = Math.max(1, Math.hypot(nx, ny))
+      targetX = nx / distance * limit; targetY = ny / distance * limit
+      returning = false
+      animate()
+    }
+    const configure = () => { enabled = allowed.matches; reset() }
+    const visibility = () => { if (document.hidden) reset() }
+    surface.addEventListener('pointermove', move, {passive:true})
+    surface.addEventListener('pointerleave', center)
+    surface.addEventListener('pointercancel', center)
+    allowed.addEventListener('change', configure)
+    window.addEventListener('blur', center)
+    window.addEventListener('resize', configure)
+    window.addEventListener('scroll', center, {passive:true})
+    document.addEventListener('visibilitychange', visibility)
+    return () => {
+      reset()
+      surface.removeEventListener('pointermove', move)
+      surface.removeEventListener('pointerleave', center)
+      surface.removeEventListener('pointercancel', center)
+      allowed.removeEventListener('change', configure)
+      window.removeEventListener('blur', center)
+      window.removeEventListener('resize', configure)
+      window.removeEventListener('scroll', center)
+      document.removeEventListener('visibilitychange', visibility)
+    }
+  }, [])
+  return {hero, photo}
+}
 function Cover({lang,onLang}:{lang:Language;onLang:(l:Language)=>void}) {
   const t=labels[lang]
+  const parallax=useHeroParallax()
   const [menu,setMenu]=useState(false)
   const trigger=useRef<HTMLButtonElement>(null)
   const panel=useRef<HTMLDivElement>(null)
@@ -54,9 +131,11 @@ function Cover({lang,onLang}:{lang:Language;onLang:(l:Language)=>void}) {
   const links=(drawer=false)=>ids.map((id,i)=><a href={'#'+id} key={id} onClick={()=>{if(drawer){pendingAnchor.current=id;setMenu(false)}}}>{t.links[i]}</a>)
   return <section className="cv-cover" id="home" aria-labelledby="cover-title">
     <a className="cv-skip" href="#resume">{t.jump}</a>
-    <div className="cv-rooftop-hero">
+    <div className="cv-rooftop-hero" ref={parallax.hero}>
+    <div className="cv-rooftop-motion" ref={parallax.photo}>
     <div className="cv-rooftop-scene" aria-hidden="true"><img src="./images/rooftop-background-v9.webp" alt=""/></div>
     <div className="cv-person"><img src="./images/portrait-original-v9.webp" fetchPriority="high" alt={t.portrait}/></div>
+    </div>
     <div className="cv-rooftop-shade" aria-hidden="true" />
     <header className="cv-top">
       <a className="cv-brand" href="#home" aria-label={t.home}>ZIKAI PAN<span>潘子恺</span></a>
