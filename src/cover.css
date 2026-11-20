@@ -52,3 +52,9 @@
 }
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
 @media print{.cv-cover{background:white;color:#161616;padding-bottom:12pt}.cv-cover>*{display:none!important}.cv-cover .cv-rooftop-hero,.cv-cover .cv-hero-stage,.cv-cover .cv-cover-copy,.cv-cover .cv-name{display:block!important;height:auto;min-height:0;padding:0;margin:0;width:100%;overflow:visible}.cv-rooftop-hero>*:not(.cv-hero-stage),.cv-cover-copy>*:not(h1){display:none!important}.cv-name{font-size:22pt;line-height:1.2}.cv-name>span:not(.cv-sr){display:inline!important;margin-right:5pt}}
+
+
+/* Keep the original portrait and watch visible on small screens. */
+@media(max-width:599px){
+  .cv-rooftop-shade{background:linear-gradient(90deg,#090b0c66,transparent 70%),linear-gradient(180deg,#090b0c88,transparent 30%,transparent 60%,#202120e6 77%,#202120 86%)}
+}
