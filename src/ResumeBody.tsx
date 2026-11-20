@@ -21,15 +21,15 @@ type ResumeEntry = {
   role?: string;
   facts?: string[][];
 };
-const sectionIds = ['education', 'experience', 'projects', 'skills', 'contact'] as const;
+const sectionIds = ['education', 'experience', 'projects', 'skills', 'gallery', 'contact'] as const;
 type SectionId = typeof sectionIds[number];
 const labels = {
   zh: {
-    title: '个人履历', index: '履历目录', links: ['教育背景', '职业经历', '研究项目', '技能与实践', '联系方式'],
+    title: '个人履历', index: '履历目录', links: ['教育背景', '职业经历', '研究项目', '技能与实践', '工作之外', '联系方式'],
     resume: '下载英文简历', print: '打印履历', honors: '荣誉与领导力', coursework: '主要课程',
     courses: '消费者数据定量分析、新产品开发、市场营销与社会、战略实践、营销管理',
     hongKong: '香港大学经管学院', boston: 'D’Amore-McKim 商学院 · 辅修传播学',
-    experienceDetails: '工作内容', projectDetails: '研究方法与个人贡献', gallery: '校园与生活影像',
+    experienceDetails: '工作内容', projectDetails: '研究方法与个人贡献',
     skills: [
       ['研究方法', '消费者访谈、问卷设计、竞品定位、倾向得分分析与逆概率加权'],
       ['分析工具', 'R、SPSS、Excel（数据透视表、查找函数与可视化）、Wind、Bloomberg'],
@@ -41,11 +41,11 @@ const labels = {
     contact: '欢迎交流市场营销、品牌策略与消费者研究。', email: '邮箱', phone: '电话',
   },
   en: {
-    title: 'Curriculum vitae', index: 'Contents', links: ['Education', 'Experience', 'Research projects', 'Skills & practice', 'Contact'],
+    title: 'Curriculum vitae', index: 'Contents', links: ['Education', 'Experience', 'Research projects', 'Skills & practice', 'Beyond Work', 'Contact'],
     resume: 'Download résumé', print: 'Print CV', honors: 'Honors and leadership', coursework: 'Selected coursework',
     courses: 'Quantitative Analysis of Consumer Data, New Product Development, Marketing and Society, Strategy in Action, Marketing Management',
     hongKong: 'HKU Business School', boston: 'D’Amore-McKim School of Business · Minor in Communication Studies',
-    experienceDetails: 'Responsibilities', projectDetails: 'Methods and contribution', gallery: 'Campus and personal photographs',
+    experienceDetails: 'Responsibilities', projectDetails: 'Methods and contribution',
     skills: [
       ['Research', 'Consumer interviews, survey design, competitor positioning, propensity scores and inverse probability weighting'],
       ['Analytics', 'R, SPSS, Excel (PivotTables, lookup functions and visualization), Wind, Bloomberg'],
@@ -281,11 +281,12 @@ export default function ResumeBody({ language }: { language: Language }) {
           <dl className="cv-skill-rows">{t.skills.map(([title, value]) => <div key={title}><dt>{title}</dt><dd>{value}</dd></div>)}</dl>
           {practices.map(entry => <Entry key={entry.id} title={entry.title} subtitle={entry.org} meta={entry.date}
             logos={entry.id === 'photography' ? [{file:'visual-china-group.webp',alt:language === 'zh' ? '视觉中国标志' : 'Visual China Group logo'}] : undefined}>
-            {entry.id === 'photography'
-              ? <div className="cv-gallery"><p className="cv-gallery-intro">{entry.summary}</p><Gallery language={language}/></div>
-              : <p>{entry.summary}</p>}
+            <p>{entry.summary}</p>
           </Entry>)}
         </section>
+    </div></div>
+    <Gallery language={language} />
+    <div className="cv-layout"><div className="cv-text">
         <section id="contact" data-cv-section="">
           {header('contact')}
           <p className="cv-contact-note">{t.contact}</p>
